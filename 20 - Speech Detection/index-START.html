@@ -11,27 +11,19 @@
       window.SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRecognition();
-      let p = document.createElement("p");
-      const words = document.querySelector(".words");
-      words.appendChild(p);
       recognition.interimResults = true;
+      let p = document.createElement("p");
+      let words = document.querySelector(".words");
+      words.appendChild(p);
+
       recognition.addEventListener("result", (e) => {
-        let transcript = [...e.results]
-          .map((result) => result[0].transcript)
-          .join("");
-
-        if (transcript.includes("unicorn"))
-          transcript = transcript.replace(/unicorn/gi, "🦄");
-
+        let transcript = [...e.results].map((result) => result[0].transcript);
         p.textContent = transcript;
-
         if (e.results[0].isFinal) {
           p = document.createElement("p");
-          words.append(p);
+          words.appendChild(p);
         }
-        // console.log(transcript);
       });
-
       recognition.start();
       recognition.addEventListener("end", recognition.start);
     </script>
