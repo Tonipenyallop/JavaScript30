@@ -25,11 +25,10 @@
       const speed = document.querySelector(".speed");
       const speedBar = document.querySelector(".speed-bar");
       const video = document.querySelector(".flex");
-      console.log(video);
+
       function changeSpeed(e) {
         const y = e.pageY - this.offsetTop;
         const percent = y / this.offsetHeight;
-
         const min = 0.5;
         const max = 4;
         const ratio = percent * (max - min) + min;
